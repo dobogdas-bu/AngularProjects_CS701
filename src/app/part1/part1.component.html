@@ -1,0 +1,64 @@
+<h3>Part 1</h3>
+<table class="table table-responsive{-lg}">
+    <caption><b>My Books</b></caption>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Qty</th>
+        <th>UnitPrice</th>
+        <th>$UnitPrice</th>
+        <th>Line Total</th>
+        <th>Total {{updateTotal() | currency}} </th>
+      </tr>
+    </thead>
+    <tbody>
+  
+
+      <!-- @for(book of books; track book.id){
+        <tr>
+        <td><input [(ngModel)]="book.title"></td>
+        <td><input [(ngModel)]="book.qty"></td>
+        <td><input [(ngModel)]="book.price"></td>
+        <td>{{book.price | currency}}</td>
+        <td>{{book.price * book.qty | currency}}</td>
+        <td><button (click)="removeBook($index)">Remove</button></td>
+      </tr>
+      } -->
+
+
+
+      <tr *ngFor = "let book of books; index as i" >
+        <td><input class="rounded" [(ngModel)]="book.title" ></td>
+        <td><input class="rounded" [(ngModel)]="book.qty"></td>
+        <td><input class="rounded" [(ngModel)]="book.price"></td>
+        <td>{{book.price | currency}}</td>
+        <td>{{book.price * book.qty | currency}}</td>
+        <td><button (click)="removeBook(i)">Remove</button></td>
+  
+      </tr>
+  
+      <tr>
+        <th colspan="1">
+          <button (click)="addBook()">
+            New
+          </button>
+        </th>
+        <th colspan="2">
+          <button id="undo" [disabled]="undoDisabled" (click)="undo()">
+            Undo
+          </button>
+        </th>
+        <th colspan="2">
+          <button id="redo" [disabled]="redoDisabled" (click)="redo()">
+            Redo
+          </button>
+        </th>
+        <th colspan="1">
+          <button (click)="saveBooks()">
+            Save
+          </button>
+        </th>
+      </tr>
+  
+    </tbody>
+  </table>
